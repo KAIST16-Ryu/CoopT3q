@@ -450,6 +450,22 @@ class PythonFileOp(FileOpBase):
             duration = time.time() - t0
             OpUtil.log_operation_info("python script execution completed", duration)
 
+            # Custom code part.
+            ##########################################################################
+            OpUtil.log_operaion_info(f"here belows are the following '{python_script_output}' logs.", duration)
+
+            # Print logs.
+            with open (python_script_output, "r") as log_file_r:
+                while True:
+                    log_sentence = log_file_r.readline()
+                    if not log_sentence: break
+                    
+                    OpUtil.log_operation_info(log_sentence, duration)
+
+            duration = time.time() - t0
+            OpUtil.log_operation_info(f"end logs.", duration)
+            ##########################################################################
+            
             self.put_file_to_object_storage(python_script_output, python_script_output)
             self.process_outputs()
         except Exception as ex:
