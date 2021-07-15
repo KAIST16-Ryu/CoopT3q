@@ -452,7 +452,7 @@ class PythonFileOp(FileOpBase):
 
             # Custom code part.
             ##########################################################################
-            if os.path.exists(python_script_output) and not (os.stat(python_script_output).st_size == 0)):
+            if os.path.exists(python_script_output) and not (os.stat(python_script_output).st_size == 0):
                 logger.info(f"'{pipeline_name}':'{operation_name}' - here belows are the following '{python_script_output}' logs.")
 
                 # Print logs.
