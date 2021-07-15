@@ -445,13 +445,14 @@ class PythonFileOp(FileOpBase):
                                       f"'python3 {python_script}' to '{python_script_output}'")
             t0 = time.time()
             with open(python_script_output, "w") as log_file:
-                subprocess.run(['python3', python_script], stdout=log_file, stderr=subprocess.STDOUT, check=True)
+                subprocess.run(['python3', python_script], stdout=subprocess.stdout, stderr=subprocess.STDOUT, check=True)
 
             duration = time.time() - t0
             OpUtil.log_operation_info("python script execution completed", duration)
 
             # Custom code part.
             ##########################################################################
+            '''
             OpUtil.log_operation_info(f"here belows are the following '{python_script_output}' logs.", duration)
 
             # Print logs.
@@ -464,6 +465,7 @@ class PythonFileOp(FileOpBase):
 
             duration = time.time() - t0
             OpUtil.log_operation_info(f"end logs.", duration)
+            '''
             ##########################################################################
             
             self.put_file_to_object_storage(python_script_output, python_script_output)
