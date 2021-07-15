@@ -452,19 +452,24 @@ class PythonFileOp(FileOpBase):
 
             # Custom code part.
             ##########################################################################
-            if os.path.exists(python_script_output) and not (os.stat(python_script_output).st_size == 0):
-                OpUtil.log_operation_info(f"here belows are the following '{python_script_output}' logs.", duration)
+            if os.path.exists(python_script_output) and not (os.stat(python_script_output).st_size == 0)):
+                logger.info(f"'{pipeline_name}':'{operation_name}' - here belows are the following '{python_script_output}' logs.")
 
                 # Print logs.
                 with open (python_script_output, "r") as log_file_r:
                     while True:
                         log_sentence = log_file_r.readline().strip()
                         if not log_sentence: break
+
+                        # Parsing the log.
+                        ##########################################################
+
+                        ##########################################################
                     
-                        OpUtil.log_operation_info(log_sentence, duration)
+                        logger.info(f"'{pipeline_name}':'{operation_name}' - {log_sentence}")
 
                 duration = time.time() - t0
-                OpUtil.log_operation_info(f"end logs.", duration)
+                logger.info(f"'{pipeline_name}':'{operation_name}' - end logs.")
             ##########################################################################
             
             self.put_file_to_object_storage(python_script_output, python_script_output)
