@@ -452,7 +452,7 @@ class PythonFileOp(FileOpBase):
 
             # Custom code part.
             ##########################################################################
-            OpUtil.log_operaion_info(f"here belows are the following '{python_script_output}' logs.", duration)
+            OpUtil.log_operation_info(f"here belows are the following '{python_script_output}' logs.", duration)
 
             # Print logs.
             with open (python_script_output, "r") as log_file_r:
