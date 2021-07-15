@@ -458,7 +458,7 @@ class PythonFileOp(FileOpBase):
                 # Print logs.
                 with open (python_script_output, "r") as log_file_r:
                     while True:
-                        log_sentence = log_file_r.readline()
+                        log_sentence = log_file_r.readline().strip()
                         if not log_sentence: break
                     
                         OpUtil.log_operation_info(log_sentence, duration)
